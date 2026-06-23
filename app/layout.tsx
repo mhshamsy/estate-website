@@ -6,6 +6,7 @@ import Link from "next/link";
 import AuthButtons from "@/components/authButtons";
 import { HomeIcon } from "lucide-react";
 import NotAuthButtons from "@/components/not-auth-buttons";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,8 +59,8 @@ export default async function RootLayout({
           </ul>
           
         </nav>
-        
         {children}
+        <Toaster/>
       </body>
     </html>
   );

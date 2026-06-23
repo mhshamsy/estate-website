@@ -41,6 +41,7 @@ const EditProperty = async ({ params }: { params: Promise<any> }) => {
             bathrooms={property.bathrooms}
             description={property.description || ''}
             status={property.status}
+            images={property.images || []}
           />
         </CardContent>
       </Card>

@@ -13,6 +13,7 @@ async function AdminDashboard({
   const searchParamsValue = await searchParams;
   const data = await getProperties
   console.log({data})
+  
   return (
     <div className="mx-auto max-w-screen-lg px-4 py-10">
       <Breadcrumbs

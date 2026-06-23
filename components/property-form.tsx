@@ -45,7 +45,7 @@ export default function PropertyForm({
     bathrooms: 0,
     status: "draft",
     description: "",
-    images: [],
+    images: [], // ✅ مقدار پیش‌فرض خالی
     ...defaultValues,
   };
 
@@ -169,11 +169,7 @@ export default function PropertyForm({
                 <FormItem>
                   <FormLabel> Bedrooms</FormLabel>
                   <FormControl>
-                    <Input
-                      type="number"
-                      //min="0"
-                      {...field}
-                    />
+                    <Input type="number" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -187,11 +183,7 @@ export default function PropertyForm({
                 <FormItem>
                   <FormLabel>Bathrooms </FormLabel>
                   <FormControl>
-                    <Input
-                      type="number"
-                      //min="0"
-                      {...field}
-                    />
+                    <Input type="number" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -212,17 +204,33 @@ export default function PropertyForm({
             />
           </fieldset>
         </div>
+
+        {/* ✅ فراخوانی MultiImageUploader داخل فرم */}
         <FormField
           control={form.control}
           name="images"
           render={({ field }) => (
             <FormItem>
+              <FormLabel>تصاویر ملک</FormLabel>
               <FormControl>
                 <MultiImageUploader
+                  images={field.value} // ✅ دریافت تصاویر فعلی از فرم
                   onImagesChange={(images: ImageUpload[]) => {
-                    form.setValue("images", images);
+                    // ✅ آپدیت کردن مقدار فرم با تصاویر جدید
+                    field.onChange(images);
                   }}
-                  images={field.value}
+                  urlFormater={(image: any) => {
+                    if (!image.file) {
+                      const url =
+                        typeof image.url === "object"
+                          ? image.url?.url || ""
+                          : image.url;
+                      return url;
+                    }
+                    return URL.createObjectURL(image.file);
+                  }}
+                  maxFiles={5}
+                  maxFileSizeMB={2}
                 />
               </FormControl>
               <FormMessage />

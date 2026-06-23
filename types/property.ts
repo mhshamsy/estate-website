@@ -10,5 +10,6 @@ export type Property = {
     bedrooms: number,
     bathrooms: number,
     description: string,
-    status: PropertyStatus
+    status: PropertyStatus,
+    images?: string[]
 }

@@ -1,1 +1,0 @@
-export type PropertyStatus = 'for_sale' | 'draft' | 'withdrawn' | 'sold'

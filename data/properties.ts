@@ -92,6 +92,9 @@ export const getProperties = async (
 export const getPropertyById = async (id: string): Promise<Property | null> => {
   const property = await prisma.property.findUnique({
     where: { id },
+    include: {
+      images: true,
+    },
   });
   return property as Property | null;
 };
