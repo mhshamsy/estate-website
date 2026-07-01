@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { signOut } from 'next-auth/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,7 +31,7 @@ const AuthButtons = ({ user }: { user: Session["user"] | null }) => {
         >
           Login
         </Link>
-        <div className="h-8 w-[1px] bg-white/50" />
+        <div className="h-8 w-px bg-white/50" />
         <Link
           href="/register"
           className="text-sm tracking-widest uppercase hover:underline"

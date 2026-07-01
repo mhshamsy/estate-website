@@ -9,7 +9,7 @@ const NotAuthButtons = () => {
         <Link href={'/login'}>Login</Link>
       </div>
 
-      <div className="h-8 w-[1px] bg-white/50" />
+      <div className="h-8 w-px bg-white/50" />
       <div className="tracking-widest uppercase hover:underline">
         <Link href={'/register'}>SignUp</Link>
       </div>

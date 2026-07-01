@@ -41,7 +41,8 @@ const Login = () => {
                 message: response.message
             })
         } else {
-            router.push("/my-account")
+            router.push("/admin-dashboard")
+            router.refresh()
         }
     }
 

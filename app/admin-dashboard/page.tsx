@@ -11,11 +11,11 @@ async function AdminDashboard({
   searchParams?: Promise<any>;
 }) {
   const searchParamsValue = await searchParams;
-  const data = await getProperties
+  const data = await getProperties(searchParamsValue.propertyId)
   console.log({data})
   
   return (
-    <div className="mx-auto max-w-screen-lg px-4 py-10">
+    <div className="mx-auto max-w-5xl px-4 py-10">
       <Breadcrumbs
         items={[
           {

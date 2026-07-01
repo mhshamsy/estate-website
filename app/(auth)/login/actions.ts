@@ -1,7 +1,6 @@
 'use server'
 
 import { signIn } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import { z } from "zod"
 
 const loginSchema = z.object({

@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import prisma from "@/lib/db";
 import Credentials from "next-auth/providers/credentials";
 import { schema } from "./schema";
 import { compare } from "bcryptjs";
@@ -17,6 +16,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         password: {},
       },
       authorize: async (credentials) => {
+        const { default: prisma } = await import("@/lib/db");
+
         const validatedCredentials = schema.parse(credentials);
         // console.log(validatedCredentials)
         // ۱. پیدا کردن کاربر فقط با ایمیل (نه با پسورد!)
@@ -66,11 +67,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     async jwt({ token, user }) {
       // When user logs in, add their ID to the token
       if (user) {
-        const dbUser = await prisma.user.findUnique({
-          where: { email: user.email as string },
-          select: { role: true },
-        });
-        token.role = dbUser?.role;
+        token.role = (user as any).role;
         token.id = user.id;
       }
       return token;

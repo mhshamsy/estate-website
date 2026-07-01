@@ -41,7 +41,7 @@ export default async function RootLayout({
             className="flex flex-row items-center gap-2 text-2xl tracking-widest uppercase"
           >
             <HomeIcon />
-            <span>Fire Home</span>
+            <span>HouseLy</span>
           </Link>
           <ul className="flex flex-row items-center gap-6">
             <li>

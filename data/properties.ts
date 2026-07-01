@@ -70,6 +70,9 @@ export const getProperties = async (
   // ۲. دریافت داده‌های صفحه جاری با مرتب‌سازی
   const properties = await prisma.property.findMany({
     where: whereClause,
+    include: {
+      images: true,
+    },
     orderBy: {
       updatedAt: "desc", // جدیدترین اول
     },

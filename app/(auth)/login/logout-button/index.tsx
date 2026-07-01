@@ -2,8 +2,11 @@
 
 import { Button } from '@/components/ui/button';
 import { logoutAction } from './actions';
+import { redirect, useRouter } from 'next/navigation';
 
 const LogoutButton = () => {
+
+  const router = useRouter()
   return (
     <Button
       size="sm"
@@ -11,6 +14,9 @@ const LogoutButton = () => {
       className="text-red-600"
       onClick={async () => {
         await logoutAction();
+
+        router.push("/")
+        router.refresh()
       }}
     >
       Logout

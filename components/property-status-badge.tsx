@@ -17,9 +17,15 @@ const variant: {
   sold: "success",
 };
 
-function PropertyStatusBadge({ status }: { status: PropertyStatus }) {
+function PropertyStatusBadge({
+  status,
+  className,
+}: {
+  status: PropertyStatus;
+  className?: string;
+}) {
   const label = statusLabel[status];
-  return <Badge variant={variant[status]}>{label}</Badge>;
+  return <Badge variant={variant[status]} className={className}>{label}</Badge>;
 }
 
 export default PropertyStatusBadge;
