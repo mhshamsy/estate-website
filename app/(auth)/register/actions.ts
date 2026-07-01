@@ -30,14 +30,21 @@ export const registerUser = async ({
   const hashedPassword = await hash(password, 10);
 
   try {
+    // ۲. بررسی می‌کنیم آیا کاربر وجود دارد یا خیر (برای تعیین ادمین اول)
+    const userCount = await prisma.user.count();
+
+    // اگر تعداد کاربران صفر بود، یعنی این اولین ثبت نام است
+    const initialRole = userCount === 0 ? "ADMIN" : "USER";
+
     await prisma.user.create({
       data: {
         email,
         password: hashedPassword,
+        role: initialRole, // نقش به صورت خودکار تعیین می‌شود
       },
     });
 
-    return { error: false, message: 'Registered successfully' }; // <-- موفقیت آمیز
+    return { error: false, message: "Registered successfully" }; // <-- موفقیت آمیز
   } catch (e: any) {
     // Prisma unique constraint (email already exists)
     if (e?.code === 'P2002') {

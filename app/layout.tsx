@@ -52,15 +52,19 @@ export default async function RootLayout({
                 property search
               </Link>
             </li>
-            <li>
-              {!!session?.user && <AuthButtons user={session?.user ?? null} />}
-            </li>
-            <li>{!session?.user && <NotAuthButtons />}</li>
+            {!!session?.user ? (
+              <li>
+                <AuthButtons user={session?.user ?? null} />
+              </li>
+            ) : (
+              <li>
+                <NotAuthButtons />
+              </li>
+            )}
           </ul>
-          
         </nav>
         {children}
-        <Toaster/>
+        <Toaster />
       </body>
     </html>
   );
