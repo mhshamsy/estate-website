@@ -43,7 +43,7 @@ export default function PropertyForm({
     price: 0,
     bedrooms: 0,
     bathrooms: 0,
-    status: "draft",
+    status: "for_sale",
     description: "",
     images: [], // ✅ مقدار پیش‌فرض خالی
     ...defaultValues,
